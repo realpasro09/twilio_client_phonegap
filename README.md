@@ -17,7 +17,6 @@ These are Phonegap plugins that expose the same JS API as Twilio Client for web 
 ```
 
 
-- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for iOS - follow the directions provided after plugman finishes.
 
 # Android
 
@@ -28,7 +27,6 @@ plugman install --platform android --project platforms/android --plugin https://
 
 ```
 
-- After installing the Twilio Client plugin, you will need to download and install the Twilio Client SDK for Android - follow the directions provided after plugman finishes.
 
 ## Additional Features
 
