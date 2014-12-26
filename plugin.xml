@@ -42,7 +42,7 @@
                 target-dir="libs/mips" />
         <source-file src="sdk/android/libs/x86/libtwilio-native.so"
                 target-dir="libs/x86" />
-        <source-file src="sdk/android/libs/twilioclient-android-1.1.3-ad48713.jar"
+        <source-file src="sdk/android/libs/twilioclient-android-1.2.0-0466703.jar"
                 target-dir="libs" />
     </platform>
 
@@ -80,7 +80,5 @@
         <header-file src="sdk/ios/Headers/TCPresenceEvent.h" />
         <header-file src="sdk/ios/Headers/TwilioClient.h" />
         <source-file src="sdk/ios/Libraries/libTwilioClient.a" framework="true" />
-        <source-file src="sdk/ios/Libraries/libcrypto.a" framework="true" />
-        <source-file src="sdk/ios/Libraries/libssl.a" framework="true" />
     </platform>
 </plugin>

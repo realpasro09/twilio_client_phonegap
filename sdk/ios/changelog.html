@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Twilio Client iOS Changes</title>
+    <link rel="stylesheet" href="assets/docs-style.css">
+    <link rel="stylesheet" href="assets/syntaxhighlighter/shCore.css">
+    <link rel="stylesheet" href="assets/syntaxhighlighter/shThemeDefault.css">
+    <script type="text/javascript" src="assets/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushJava.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushObjC.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushPhp.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushXml.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushPython.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div id="header-logo">
+        <img src="assets/twilio-header-logo.png" alt="Twilio">
+    </div>
+</div>
+
+<div id="content">
+
+<h1 id="twilio-client-ios-changes">Twilio Client iOS Changes</h1>
+
+<h2 id="dec-18-2014">1.2.1 (Dec. 18, 2014)</h2>
+
+<p><strong>Bug Fixes</strong></p>
+
+<ul>
+  <li>MSDK-42 - "duplicate symbol" error loading lib in TwilioSDK 1.2</li>
+  <li>MSDK-47 - When there is no Contact header in 302 redirect, TwilioSDK crashes</li>
+  <li>MSDK-56 - TwilioSDK does not hold onto <code>TCConnection</code> objects</li>
+  <li>MSDK-58 - TwilioSDK 1.2 multiple call scenario <code>didReceiveIncomingConnection</code> callback does not work as expected</li>
+  <li>MSDK-76 - Avoid accessing <code>pjlib</code> in unknown/external thread to prevent exception crash</li>
+</ul>
+
+<h2 id="nov-25-2014">1.2.0 (Nov. 25, 2014)</h2>
+
+<p>Initial 1.2 release.</p>
+
+<p><strong>Support for Twilio’s Global Low Latency Routing</strong> </p>
+
+<p>Twilio Client for iOS now takes advantage of Twilio’s Global Low Latency (GLL) routing to further improve call quality. Media for all Twilio Client calls is routed to the Twilio data center geographically nearest to the user, significantly reducing call latency.</p>
+
+<p><strong>Support for arm64</strong> </p>
+
+<p>Twilio Client for iOS can now target the 64-bit runtime, improving the performance of your Twilio Client application.</p>
+
+<p><strong>Symbol Prefixing</strong> </p>
+
+<p>All internal symbols are now prefixed with twilio_ to avoid conflicts with other dependencies.</p>
+
+<p><strong>Richer Debug Logging</strong> </p>
+
+<p>We’ve made it easier to find and resolve issues in your Twilio Client iOS application with more detailed logging.</p>
+
+<pre class="brush: oc">
+[[TwilioClient sharedInstance] setLogLevel:TC_LOG_DEBUG];
+</pre>
+
+<p>Available log levels in order of verbosity: <code>TC_LOG_OFF</code>, <code>TC_LOG_ERROR</code>, <code>TC_LOG_WARN</code>, <code>TC_LOG_INFO</code>, <code>TC_LOG_DEBUG</code>, <code>TC_LOG_VERBOSE</code>.</p>
+
+<p><strong>Call Sid Availability</strong></p>
+
+<p>Call Sid is available for outgoing calls as well.</p>
+
+<p><strong>Improved Sample Applications</strong></p>
+
+<p>We have improved both BasicPhone and Quickstart sample applications. Server backend can be simply installed to your Heroku account from <a href="https://github.com/twilio/mobile-quickstart">https://github.com/twilio/mobile-quickstart</a>.</p>
+
+<p><strong>Supported iOS Releases</strong></p>
+
+<ul>
+  <li>iOS 6.0+</li>
+  <li>iOS 7.0+</li>
+  <li>iOS 8.0+</li>
+</ul>
+
+<p><strong>Supported iOS Devices</strong></p>
+
+<ul>
+  <li>iPhone 4S and later (running iOS 6 and later)</li>
+  <li>iPad 2 and later (running iOS 6 and later)</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.config.space=' ';
+    SyntaxHighlighter.all();
+</script>
+
+</body>
+</html>

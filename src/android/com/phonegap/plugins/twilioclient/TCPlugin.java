@@ -174,7 +174,9 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			Log.d("TCPlugin","Releasing device");
 			cordova.getThreadPool().execute(new Runnable(){
 				public void run() {
-					mDevice.release();
+                    if (mDevice != null) {
+				        mDevice.release();
+                    }
 				}
 			});
 			javascriptCallback("onoffline", callbackContext);
@@ -249,8 +251,10 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	}
 	
 	private void disconnectAll(JSONArray arguments, CallbackContext callbackContext) {
-		mDevice.disconnectAll();
-		callbackContext.success();
+        if (mDevice != null) {
+            mDevice.disconnectAll();
+            callbackContext.success();
+        }
 	}
 	
 	private void acceptConnection(JSONArray arguments, CallbackContext callbackContext) {

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Twilio Client for Android Changes</title>
+    <link rel="stylesheet" href="assets/docs-style.css">
+    <link rel="stylesheet" href="assets/syntaxhighlighter/shCore.css">
+    <link rel="stylesheet" href="assets/syntaxhighlighter/shThemeDefault.css">
+    <script type="text/javascript" src="assets/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushJava.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushObjC.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushPhp.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushXml.js"></script>
+    <script type="text/javascript" src="assets/syntaxhighlighter/shBrushPython.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div id="header-logo">
+        <img src="assets/twilio-header-logo.png" alt="Twilio">
+    </div>
+</div>
+
+<div id="content">
+
+<h1 id="twilio-client-android-sdk-changes">Twilio Client Android SDK Changes</h1>
+
+<h2 id="december-18-2014">1.2.0 (December 18, 2014)</h2>
+
+<p>Initial 1.2 release.</p>
+
+<p><strong>Support for Twilio’s Global Low Latency Routing</strong> </p>
+
+<p>Twilio Client for Android now takes advantage of Twilio’s Global Low Latency (GLL) routing to further improve call quality. Media for all Twilio Client calls is routed to the Twilio data center geographically nearest to the user, significantly reducing call latency.</p>
+
+<p><strong>Richer Debug Logging</strong> </p>
+
+<p>We’ve made it easier to find and resolve issues in your Twilio Client Android application with detailed logging with a simple API call.</p>
+
+<pre class="brush: java">
+Twilio.setLogLevel(int level);
+</pre>
+
+<p>The level parameter values correspond to the levels provided by the Android SDK :  <code>Log.ASSERT</code>,<code>Log.DEBUG</code>,  <code>Log.ERROR</code>, <code>Log.INFO</code>, <code>Log.VERBOSE</code>,<code>Log.WARN</code>.</p>
+</div>
+
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.config.space=' ';
+    SyntaxHighlighter.all();
+</script>
+
+</body>
+</html>
