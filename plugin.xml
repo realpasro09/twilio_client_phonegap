@@ -34,6 +34,8 @@
                 target-dir="src/com/phonegap/plugins/twilioclient" />
          <source-file src="src/android/com/phonegap/plugins/twilioclient/TCPlugin.java"
                 target-dir="src/com/phonegap/plugins/twilioclient" />
+        <source-file src="src/android/android-support-v4.jar"
+                target-dir="libs" />
         
         <source-file src="sdk/android/libs/armeabi/libtwilio-native.so"
                 target-dir="libs/armeabi" />
