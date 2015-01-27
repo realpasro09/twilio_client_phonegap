@@ -46,7 +46,7 @@
 }
 
 -(void)device:(TCDevice *)device didReceivePresenceUpdate:(TCPresenceEvent *)presenceEvent {
-    NSString *available = [NSString stringWithFormat:@"%d", presenceEvent.isAvailable];
+    NSNumber *available = [NSNumber numberWithBool:presenceEvent.isAvailable];
     NSDictionary *object = [NSDictionary dictionaryWithObjectsAndKeys:presenceEvent.name, @"from", available, @"available", nil];
     [self javascriptCallback:@"onpresence" withArguments:object];
 }
