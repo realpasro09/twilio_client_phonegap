@@ -1,5 +1,5 @@
 //
-//  Copyright 2011-2014 Twilio. All rights reserved.
+//  Copyright 2011-2015 Twilio. All rights reserved.
 //
 //  Use of this software is subject to the terms and conditions of the 
 //  Twilio Terms of Service located at http://www.twilio.com/legal/tos
@@ -11,13 +11,13 @@
 
 /** TCConnectionState is an enum representing the current status of TCConnection.
  */
-typedef enum
+typedef NS_ENUM(NSInteger, TCConnectionState)
 {
 	TCConnectionStatePending = 0,	/**< An incoming TCConnection has not yet been accepted. */
 	TCConnectionStateConnecting,	/**< An incoming TCConnection has been accepted, or an outgoing TCConnection is being established. */
 	TCConnectionStateConnected,		/**< A connection has been established. */
 	TCConnectionStateDisconnected	/**< An open connection has been disconnected. */
-} TCConnectionState;
+};
 
 
 /** @name Incoming connection parameter capability keys */

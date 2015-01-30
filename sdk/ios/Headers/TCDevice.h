@@ -1,5 +1,5 @@
 //
-//  Copyright 2011-2014 Twilio. All rights reserved.
+//  Copyright 2011-2015 Twilio. All rights reserved.
 //
 //  Use of this software is subject to the terms and conditions of the 
 //  Twilio Terms of Service located at http://www.twilio.com/legal/tos
@@ -14,12 +14,12 @@
 
  The TCDeviceDelegate gets notified of the state changes.
  */
-typedef enum
+typedef NS_ENUM(NSInteger, TCDeviceState)
 {
 	TCDeviceStateOffline = 0,		/**< TCDevice The device is not connected and cannot receive incoming connections or make outgoing connections. */
 	TCDeviceStateReady,				/**< TCDevice can receive incoming connections and attempt outgoing connections if capabilities allow. */
 	TCDeviceStateBusy				/**< TCDevice is connected to the network and has an active connection.  No additional connections can be created or accepted. */
-} TCDeviceState;
+};
 
 /** @name Device capability keys */
 
