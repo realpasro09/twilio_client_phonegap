@@ -45,7 +45,7 @@
                 target-dir="libs/mips" />
         <source-file src="sdk/android/libs/x86/libtwilio-native.so"
                 target-dir="libs/x86" />
-        <source-file src="sdk/android/libs/twilioclient-android-1.2.0-0466703.jar"
+        <source-file src="sdk/android/libs/twilioclient-android.jar"
                 target-dir="libs" />
     </platform>
 
