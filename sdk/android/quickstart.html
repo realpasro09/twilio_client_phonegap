@@ -621,7 +621,7 @@ have an incoming connection, and handle it if so.</li>
         Log.d(TAG, "Twilio SDK is ready");
 
         try {
-            String capabilityToken = HttpHelper.httpGet("http://companyfoo.com/token?clientName=jenny");
+            String capabilityToken = HttpHelper.httpGet("http://companyfoo.com/token?client=jenny");
             device = Twilio.createDevice(capabilityToken, this);
 
             Intent intent = new Intent(context, HelloMonkeyActivity.class);
@@ -711,7 +711,7 @@ public void onInitialized()
         // the Emulator has a somewhat unique "product" name
         boolean isEmulator = Build.PRODUCT.equals("sdk") || Build.PRODUCT.equals("google_sdk");
         String clientName = isEmulator ? "tommy" : "jenny";
-        String capabilityToken = HttpHelper.httpGet("http://companyfoo.com/token?clientName=" + clientName);
+        String capabilityToken = HttpHelper.httpGet("http://companyfoo.com/token?client=" + clientName);
         device = Twilio.createDevice(capabilityToken, this);
 
         Intent intent = new Intent(context, HelloMonkeyActivity.class);
