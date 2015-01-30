@@ -25,16 +25,37 @@
 
 <h1 id="twilio-client-ios-changes">Twilio Client iOS Changes</h1>
 
+<h2 id="jan-29-2015">1.2.2 (Jan. 29, 2015)</h2>
+
+<p><strong>API Changes</strong></p>
+
+<ul>
+  <li>MSDK-87 - New API to obtain version of iOS SDK.</li>
+</ul>
+
+<p><strong>Bug Fixes</strong>*</p>
+
+<ul>
+  <li>MSDK-8 - <code>TCDevice</code> state becomes <code>TCDeviceStateOffline</code> whenever its capability token expires.</li>
+  <li>MSDK-77 - <code>TCConnectionState</code> enum is now accessible from Swift.</li>
+  <li>MSDK-93 - The SDK now includes separate libraries for OpenSSL.</li>
+  <li>MSDK-98 - The SDK no longer crashes when initializing <code>TCCommandHandler</code> in iOS 7.0 and lower.</li>
+  <li>MSDK-100 - Corrected a crash that could occasionally occur when un-registering a <code>TCDevice</code> by calling <code>-unlisten</code> or due to capability token expiration.</li>
+  <li>MSDK-101, MSDK-102, MSDK-146, MSDK-181 and MSDK-183 - A number of crashes that could occur when calling <code>[TCDevice connect]</code> have been corrected.</li>
+  <li>MSDK-106 - The SDK no longer pauses music when <code>[TCDevice initWithCapabilityToken]</code> is called.</li>
+  <li>MSDK-184 - The SDK now uses OpenSSL v1.0.1k.</li>
+</ul>
+
 <h2 id="dec-18-2014">1.2.1 (Dec. 18, 2014)</h2>
 
 <p><strong>Bug Fixes</strong></p>
 
 <ul>
-  <li>MSDK-42 - "duplicate symbol" error loading lib in TwilioSDK 1.2</li>
-  <li>MSDK-47 - When there is no Contact header in 302 redirect, TwilioSDK crashes</li>
-  <li>MSDK-56 - TwilioSDK does not hold onto <code>TCConnection</code> objects</li>
-  <li>MSDK-58 - TwilioSDK 1.2 multiple call scenario <code>didReceiveIncomingConnection</code> callback does not work as expected</li>
-  <li>MSDK-76 - Avoid accessing <code>pjlib</code> in unknown/external thread to prevent exception crash</li>
+  <li>MSDK-42 - Eliminated "duplicate symbol" error loading lib in TwilioSDK 1.2.</li>
+  <li>MSDK-47 - Eliminated a rare crash when handling a 302 redirect response from Twilio. </li>
+  <li>MSDK-56 - TwilioSDK no longer holds onto <code>TCConnection</code> objects.</li>
+  <li>MSDK-58 - Fixed a problem where <code>didReceiveIncomingConnection</code> did not work as expected when handling multiple <code>TCDevice</code> objects. </li>
+  <li>MSDK-76 - Eliminated a crash caused by accessing <code>pjlib</code> in an unknown/external thread. </li>
 </ul>
 
 <h2 id="nov-25-2014">1.2.0 (Nov. 25, 2014)</h2>
