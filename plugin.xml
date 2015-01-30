@@ -83,5 +83,7 @@
         <header-file src="sdk/ios/Headers/TCPresenceEvent.h" />
         <header-file src="sdk/ios/Headers/TwilioClient.h" />
         <source-file src="sdk/ios/Libraries/libTwilioClient.a" framework="true" />
+        <source-file src="sdk/ios/Libraries/libcrypto.a" framework="true" />
+        <source-file src="sdk/ios/Libraries/libssl.a" framework="true" />
     </platform>
 </plugin>
