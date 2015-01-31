@@ -81,15 +81,15 @@
         disconnect: function(boolean) {}
     }
     
-    TwilioPlugin.Device.prototype.hasNotificationPermission: function (callback, scope) {
+    TwilioPlugin.Device.prototype.hasNotificationPermission = function (callback, scope) {
         var fn = function (badge) {
             callback.call(scope || this, badge);
         };
         cordova.exec(fn, null, 'TCPlugin', 'hasNotificationPermission', []);
     }
         
-    TwilioPlugin.Device.prototype.promptForNotificationPermission: function () {
-        cordova.exec(null, null, 'TCPlugin', 'promptForNotifcationPermission', []);
+    TwilioPlugin.Device.prototype.promptForNotificationPermission = function () {
+        cordova.exec(null, null, 'TCPlugin', 'promptForNotificationPermission', []);
     }
 
     TwilioPlugin.Connection.prototype.accept = function(argument) {
