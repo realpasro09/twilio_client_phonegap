@@ -199,6 +199,49 @@
 }
 
 
+-(void)hasNotificationPermission:(CDVInvokedUrlCommand*)command {
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* result;
+        BOOL hasPermission = [self hasPermissionToSheduleNotifications];
+
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:hasPermission];
+
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }];
+}
+
+-(void)promptForNotificationPermission:(CDVInvokedUrlCommand*)command {
+#ifdef __IPHONE_8_0
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+    
+        UIUserNotificationType types = UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound;
+        
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [self.commandDelegate runInBackground:^{
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        }];
+    }
+#endif
+}
+
+-(BOOL)hasPermissionToSheduleNotifications {
+#ifdef __IPHONE_8_0
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+    
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        
+        UIUserNotificationType requiredTypes = UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound;
+        
+        return (settings.types & requiredTypes);
+    }
+    else
+#endif
+    {
+        return YES;
+    }
+}
+
 -(void)showNotification:(CDVInvokedUrlCommand*)command {
     @try {
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -226,6 +269,7 @@
 -(void)cancelNotification:(CDVInvokedUrlCommand*)command {
     [[UIApplication sharedApplication] cancelLocalNotification:_ringNotification];
 }
+
 
 -(void)setSpeaker:(CDVInvokedUrlCommand*)command {
     NSString *mode = [command.arguments objectAtIndex:0];

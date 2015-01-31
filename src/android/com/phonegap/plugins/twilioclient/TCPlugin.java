@@ -57,6 +57,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	private int mCurrentNotificationId = 1;
 	private String mCurrentNotificationText;
 	private TCPlugin plugin = this;
+    private Boolean jsPresence = false;
 
 	
 
@@ -135,6 +136,11 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 		} else if ("rejectConnection".equals(action)) {
 			rejectConnection(args, callbackContext);
 			return true;
+        } else if ("hasNotificationPermission".equals(action)) {
+            javascriptCallback("hasNotificationPermission", callbackContext);
+            return true;
+        } else if ("promptForNotificationPermission".equals(action)) {
+            return true;  
 		} else if ("showNotification".equals(action)) {
 			showNotification(args,callbackContext);
 			return true;
@@ -144,7 +150,11 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 		} else if ("setSpeaker".equals(action)) {
 			setSpeaker(args,callbackContext);
 			return true;
-		}
+		} else if ("activatePresence".equals(action)) {
+            Log.d(TAG, "Device will now receive presence events.");
+            jsPresence = true;
+            return true;
+        }
 
 		return false; 
 	}
@@ -182,15 +192,24 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			javascriptCallback("onoffline", callbackContext);
 			return;
 		}
-		mDevice = Twilio.createDevice(arguments.optString(0), this);
+        String token = arguments.optString(0);
+        if (mDevice != null) {
+        	mDevice.updateCapabilityToken(token);
+        }
+        else {
+            List<Device> devices = Twilio.listDevices();
+            if (devices.size() > 0) {
+                devices.get(0).release();
+            }
+            mDevice = Twilio.createDevice(token, this);
 
-		Intent intent = new Intent(this.cordova.getActivity(), IncomingConnectionActivity.class);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this.cordova.getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-		mDevice.setIncomingIntent(pendingIntent);
-		
-		LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(cordova.getActivity());
-		lbm.registerReceiver(mBroadcastReceiver, new IntentFilter(IncomingConnectionActivity.ACTION_NAME));
-		
+            Intent intent = new Intent(this.cordova.getActivity(), IncomingConnectionActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this.cordova.getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            mDevice.setIncomingIntent(pendingIntent);
+
+            LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(cordova.getActivity());
+            lbm.registerReceiver(mBroadcastReceiver, new IntentFilter(IncomingConnectionActivity.ACTION_NAME));
+        }
         deviceStatusEvent(callbackContext);
 	}
             
@@ -362,6 +381,12 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 		PluginResult result = new PluginResult(PluginResult.Status.OK,parameters);
 		callbackContext.sendPluginResult(result);
 	}
+            
+    
+    private void hasPermission(CallbackContext callbackContext) {
+        PluginResult result = new PluginResult(PluginResult.Status.OK, true);
+        callbackContext.sendPluginResult(result);
+    }
 
 	
 	private void showNotification(JSONArray arguments, CallbackContext context) {
@@ -458,7 +483,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 
 	@Override
 	public boolean receivePresenceEvents(Device device) {
-		return false;
+		return jsPresence;
 	}
 
 	// Twilio Init Listener methods

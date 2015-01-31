@@ -66,6 +66,9 @@
 
     TwilioPlugin.Device.prototype.presence = function(fn) {
         delegate['onpresence'] = fn;
+        if (cordova.platformId == 'android') {
+            Cordova.exec(null,null,"TCPlugin","activatePresence",[]);
+        }
     }
 
     TwilioPlugin.Device.prototype.status = function(fn) {
@@ -76,6 +79,17 @@
         incoming: function(boolean) {},
         outgoing: function(boolean) {},
         disconnect: function(boolean) {}
+    }
+    
+    TwilioPlugin.Device.prototype.hasNotificationPermission: function (callback, scope) {
+        var fn = function (badge) {
+            callback.call(scope || this, badge);
+        };
+        cordova.exec(fn, null, 'TCPlugin', 'hasNotificationPermission', []);
+    }
+        
+    TwilioPlugin.Device.prototype.promptForNotificationPermission: function () {
+        cordova.exec(null, null, 'TCPlugin', 'promptForNotifcationPermission', []);
     }
 
     TwilioPlugin.Connection.prototype.accept = function(argument) {
