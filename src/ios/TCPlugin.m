@@ -82,7 +82,13 @@
 
 -(void)deviceSetup:(CDVInvokedUrlCommand*)command {
     self.callback = command.callbackId;
-    self.device = [[TCDevice alloc] initWithCapabilityToken:[command.arguments objectAtIndex:0] delegate:self];
+    NSString *token = [command.arguments objectAtIndex:0];
+    if (self.device) {
+        [self.device updateCapabilityToken:token];
+    }
+    else {
+        self.device = [[TCDevice alloc] initWithCapabilityToken:token delegate:self];
+    }
     
     // Disable sounds. was getting EXC_BAD_ACCESS
     //self.device.incomingSoundEnabled   = NO;
