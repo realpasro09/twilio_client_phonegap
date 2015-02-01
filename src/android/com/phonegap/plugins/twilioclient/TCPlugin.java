@@ -404,13 +404,15 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
         notificationIntent.putExtra("notificationTag", "BVNotification");
         
 	    PendingIntent pendingIntent = PendingIntent.getActivity(acontext, 0, notificationIntent, 0);  
-	    int notification_icon = acontext.getResources().getIdentifier("notification", "drawable", acontext.getPackageName());
+	    int notification_icon = acontext.getResources().getIdentifier("icon", "drawable", acontext.getPackageName());
 		NotificationCompat.Builder mBuilder =
 			    new NotificationCompat.Builder(acontext)
 				.setSmallIcon(notification_icon)
 			    .setContentTitle("Incoming Call")
 			    .setContentText(mCurrentNotificationText)
-			    .setContentIntent(pendingIntent);
+			    .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+			    .setDefaults(-1);
 		mNotifyMgr.notify(mCurrentNotificationId, mBuilder.build());
 		
 		context.success();
